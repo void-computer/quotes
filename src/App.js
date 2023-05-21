@@ -19,10 +19,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1> Generate An Excuse </h1>
-      <button onClick={() => fetchExcuse("party")}> Party</button>
-      <button onClick={() => fetchExcuse("family")}> Family</button>
-      <button onClick={() => fetchExcuse("office")}> Office </button>
+      <h1> Generate A Quote </h1>
+      <button className='button' onClick={() => fetchExcuse("party")}> Party</button>
+      <button className='button' onClick={() => fetchExcuse("family")}> Family</button>
+      <button className='button' onClick={() => fetchExcuse("office")}> Office </button>
       <p> {generatedExcuse} </p>
       </header>
     </div>
