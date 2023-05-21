@@ -1,29 +1,38 @@
-import React from 'react';
-import { useEffect,useState } from 'react';
+import { useEffect , useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
 function App() {
   
-  const [generatedExcuse, setGeneratedExcuse] = useState("");
+  const [quote, setQuote] = useState({});
 
-  const fetchExcuse = (excuse) => {
-    axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}/`).then(
+  function fetchQuote() {
+    axios.get(`https://api.quotable.io/random`).then(
       (res) => {
-        setGeneratedExcuse(res.data[0].excuse);
+        setQuote(res.data)
+        console.log(res.data)
       }
     );
   };
+
+
+  useEffect(() => {
+    axios.get(`https://api.quotable.io/random`).then(
+      (res) => {
+        setQuote(res.data)
+        console.log(res.data)
+      })
+
+
+  }, [])
 
   
   return (
     <div className="App">
       <header className="App-header">
       <h1> Generate A Quote </h1>
-      <button className='button' onClick={() => fetchExcuse("party")}> Party</button>
-      <button className='button' onClick={() => fetchExcuse("family")}> Family</button>
-      <button className='button' onClick={() => fetchExcuse("office")}> Office </button>
-      <p> {generatedExcuse} </p>
+      <button className='button' onClick={fetchQuote}>Random Quote</button>
+      <p>Quote: "{quote.content}"- {quote.author}</p>
       </header>
     </div>
   );
